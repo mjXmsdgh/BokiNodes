@@ -1,4 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://c6aq8schbxi0g"]
+[gd_scene load_steps=3 format=3 uid="uid://c6aq8schbxi0g"]
+
+[ext_resource type="Script" path="res://scenes/boki_node.gd" id="1_tk0np"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tgelh"]
 size = Vector2(200, 100)
@@ -9,6 +11,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_tk0np")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 1
