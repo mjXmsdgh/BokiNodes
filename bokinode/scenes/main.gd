@@ -29,19 +29,33 @@ func _ready():
 # Ledgerに登録されている勘定科目の数だけ、BokiNodeを生成・配置する
 func _setup_nodes():
 	var all_accounts = Ledger.accounts.values()
-	for i in range(all_accounts.size()):
-		var account_data = all_accounts[i]
+	
+	# 勘定科目の種類ごとにノードを整理するための辞書
+	var categorized_nodes: Dictionary = {
+		Account.Type.ASSET: [],
+		Account.Type.LIABILITY: [],
+		Account.Type.EQUITY: [],
+		Account.Type.REVENUE: [],
+		Account.Type.EXPENSE: [],
+	}
+
+	for account_data in all_accounts:
 		var node_instance = BokiNodeScene.instantiate()
-		
-		# TODO: ここで各ノードを適切な位置に配置するロジックを追加
-		node_instance.position = Vector2(100 + (i % 3) * 250, 150 + (i / 3) * 150)
-		
 		boki_node_container.add_child(node_instance)
 		boki_nodes[account_data.id] = node_instance
-
-		# シーンツリーに追加した後で初期設定を呼び出す
 		node_instance.setup(account_data)
+		categorized_nodes[account_data.account_type].append(node_instance)
 
+	# 簿記のレイアウトに合わせて配置（左側に資産、右側にその他）
+	_layout_nodes(categorized_nodes[Account.Type.ASSET], Vector2(150, 200))
+	_layout_nodes(categorized_nodes[Account.Type.LIABILITY], Vector2(500, 150))
+	_layout_nodes(categorized_nodes[Account.Type.EQUITY], Vector2(500, 300))
+	_layout_nodes(categorized_nodes[Account.Type.REVENUE], Vector2(850, 150))
+	_layout_nodes(categorized_nodes[Account.Type.EXPENSE], Vector2(850, 300))
+
+func _layout_nodes(nodes: Array, start_pos: Vector2):
+	for i in range(nodes.size()):
+		nodes[i].position = start_pos + Vector2(0, i * 120)
 
 # 各種シグナルを対応する関数に接続する
 func _connect_signals():
