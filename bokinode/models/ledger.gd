@@ -49,10 +49,10 @@ func execute_transaction(transaction: TransactionResource):
 # --- 初期化処理 ---
 
 # 勘定科目を生成し、辞書に登録するヘルパー関数
-func _create_account(id: StringName, display_name: String, type: Account.Type, initial_balance: float = 0.0):
+func _create_account(id: StringName, name: String, type: Account.Type, initial_balance: int = 0):
 	var account = AccountResource.new()
 	account.id = id
-	account.display_name = display_name
+	account.name = name
 	account.account_type = type
 	account.balance = initial_balance
 	accounts[id] = account
@@ -80,7 +80,7 @@ func _initialize_accounts():
 
 
 # 取引を生成し、リストに追加するヘルパー関数
-func _create_transaction(desc: String, amount: float, from_id: StringName, to_id: StringName):
+func _create_transaction(desc: String, amount: int, from_id: StringName, to_id: StringName):
 	var tx = TransactionResource.new()
 	tx.description = desc
 	tx.amount = amount

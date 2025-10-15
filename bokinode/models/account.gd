@@ -12,12 +12,12 @@ enum Type {
 }
 
 @export var id: StringName
-@export var display_name: String
+@export var name: String
 @export var account_type: Type
-@export var balance: float = 0.0
+@export var balance: int = 0
 
-func increase(amount: float):
+func increase(amount: int):
 	balance += amount
 
-func decrease(amount: float):
+func decrease(amount: int):
 	balance -= amount
