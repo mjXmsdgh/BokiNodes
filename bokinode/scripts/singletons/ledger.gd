@@ -2,8 +2,8 @@
 extends Node
 
 # AccountクラスとTransactionクラスを読み込む
-const AccountResource = preload("res://models/account.gd")
-const TransactionResource = preload("res://models/transaction.gd")
+const AccountResource = preload("res://scripts/data/account.gd")
+const TransactionResource = preload("res://scripts/data/transaction.gd")
 
 # すべての勘定科目をIDをキーにして保持する辞書
 var accounts: Dictionary = {} # { "cash": AccountResource, ... }
