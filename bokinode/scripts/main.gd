@@ -2,6 +2,7 @@ extends Node
 
 # 再利用するBokiNodeシーンをあらかじめ読み込んでおく
 const BokiNodeScene = preload("res://scenes/BokiNode.tscn")
+const TransactionIndicatorScene = preload("res://scenes/TransactionIndicator.tscn")
 
 # --- Node References ---
 @onready var boki_node_container = $World/BokiNodeContainer
@@ -15,6 +16,8 @@ var boki_nodes: Dictionary = {}
 
 # 現在のチュートリアルの取引データ
 var current_transaction: Transaction
+# 現在表示されている取引インジケーターのインスタンス
+var current_indicator: TransactionIndicator = null
 
 
 func _ready():
@@ -87,15 +90,46 @@ func _prepare_next_step():
 
 # 「次の取引へ」ボタンが押されたときに呼ばれる
 func _on_next_button_pressed():
-	# 保持している現在の取引データを一時的な変数に保存
 	print("\n--- [Main] Nextボタンが押されました ---")
-	var transaction_to_execute = current_transaction
-	print("  - 実行する取引: ", transaction_to_execute.description if transaction_to_execute else "なし")
-	# UIを次のステップの表示に更新する
+	
+	# 【お掃除】もし前回のインジケーターが残っていたら消す
+	if is_instance_valid(current_indicator):
+		current_indicator.queue_free()
+		current_indicator = null
+		
+	# 実行すべき取引がなければ何もしない
+	if not current_transaction:
+		print("  - 実行する取引がありません。")
+		return
+
+	# 【データ更新】と【画面表示の更新】
+	_execute_and_visualize_transaction(current_transaction)
+	
+	# 次の取引の準備をする
 	_prepare_next_step()
-	# UI更新前に保持していた取引を実行する
-	if transaction_to_execute:
-		Ledger.execute_transaction(transaction_to_execute)
+
+
+# 取引を実行し、結果を可視化する
+func _execute_and_visualize_transaction(transaction: Transaction):
+	print("  - 実行する取引: ", transaction.description)
+	
+	# 1. Ledgerに取引を実行させる (これによりaccount_updatedシグナルが発行される)
+	Ledger.execute_transaction(transaction)
+	
+	# 2. 取引の可視化（矢印と数字の表示）
+	var from_node = boki_nodes.get(transaction.from_account_id)
+	var to_node = boki_nodes.get(transaction.to_account_id)
+	
+	if from_node and to_node:
+		var from_pos = from_node.global_position
+		var to_pos = to_node.global_position
+		
+		current_indicator = TransactionIndicatorScene.instantiate() as TransactionIndicator
+		boki_node_container.add_child(current_indicator)
+		
+		current_indicator.global_position = from_pos.lerp(to_pos, 0.5) # 中間地点に配置
+		current_indicator.rotation = from_pos.angle_to_point(to_pos) # Toノードの方向に向ける
+		current_indicator.set_amount(transaction.amount) # 金額を設定
 
 
 # Ledger側で勘定科目の残高が更新されたときに呼ばれる
