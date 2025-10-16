@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://n1x7i2a7nfe0"]
+
+[ext_resource type="Texture2D" uid="uid://c84xfhpc8comt" path="res://arrow.png" id="1_fdrrw"]
+
+[node name="TransactionIndicator" type="Node2D"]
+position = Vector2(-326, -196)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 9.0
+offset_top = 6.0
+offset_right = 649.0
+offset_bottom = 366.0
+texture = ExtResource("1_fdrrw")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = -29.0
+offset_top = -45.0
+offset_right = 17.0
+offset_bottom = -22.0
+text = "99999"
