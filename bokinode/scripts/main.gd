@@ -121,14 +121,20 @@ func _execute_and_visualize_transaction(transaction: Transaction):
 	var to_node = boki_nodes.get(transaction.to_account_id)
 	
 	if from_node and to_node:
-		var from_pos = from_node.global_position
-		var to_pos = to_node.global_position
+		# 矢印の親(boki_node_container)からの相対位置を使用する
+		var from_pos = from_node.position
+		var to_pos = to_node.position
 		
 		current_indicator = TransactionIndicatorScene.instantiate() as TransactionIndicator
 		boki_node_container.add_child(current_indicator)
 		
-		current_indicator.global_position = from_pos.lerp(to_pos, 0.5) # 中間地点に配置
-		current_indicator.rotation = from_pos.angle_to_point(to_pos) # Toノードの方向に向ける
+		# 1. 位置: 2つのノードのちょうど真ん中に配置する
+		current_indicator.position = from_pos.lerp(to_pos, 0.5)
+		# 2. 角度: FromノードからToノードの方向に向ける
+		current_indicator.rotation = from_pos.angle_to_point(to_pos)
+		# 3. 長さ: 2点間の距離に合わせて矢印の長さを調整する
+		var distance = from_pos.distance_to(to_pos)
+		current_indicator.scale.x = distance / 100.0 # Polygon2Dの基本の長さ(100px)で割る
 		current_indicator.set_amount(transaction.amount) # 金額を設定
 
 
