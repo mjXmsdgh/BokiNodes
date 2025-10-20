@@ -7,6 +7,7 @@ const TransactionIndicatorScene = preload("res://scenes/TransactionIndicator.tsc
 # --- Node References ---
 @onready var boki_node_container = $World/BokiNodeContainer
 @onready var title_label = $UI/TutorialPanel/MarginContainer/VBoxContainer/TitleLabel
+@onready var layout_manager = $BokiNodeLayoutManager
 @onready var description_label = $UI/TutorialPanel/MarginContainer/VBoxContainer/DescriptionLabel
 @onready var next_button = $UI/NextButton
 
@@ -29,49 +30,13 @@ var current_state: State = State.DECLARE
 
 func _ready():
 	print("--- [Main] _ready: 処理開始 ---")
-	# 1. BokiNodeを画面上に生成・配置する
-	_setup_nodes()
+	# 1. レイアウト担当にノード配置を依頼し、結果を受け取る
+	boki_nodes = layout_manager.setup_and_layout_nodes(boki_node_container)
 	# 2. ボタンやLedgerからのシグナルを接続する
 	_connect_signals()
 	# 3. 最初の取引情報を表示して、ユーザーの操作を待つ
 	_prepare_next_transaction()
 
-
-# Ledgerに登録されている勘定科目の数だけ、BokiNodeを生成・配置する
-func _setup_nodes():
-	print("--- [Main] _setup_nodes: ノードのセットアップを開始 ---")
-	
-	# 勘定科目の種類ごとにノードを整理するための辞書
-	var categorized_nodes: Dictionary = {
-		Account.Type.ASSET: [],
-		Account.Type.LIABILITY: [],
-		Account.Type.EQUITY: [],
-		Account.Type.REVENUE: [],
-		Account.Type.EXPENSE: [],
-	}
-
-	# Ledger.accounts辞書の値（Accountリソース）を一つずつ取り出す
-	for account_data in Ledger.accounts.values():
-		var node_instance = BokiNodeScene.instantiate()
-		boki_node_container.add_child(node_instance)
-		# Accountリソースが持つ `id` をキーとして、ノードのインスタンスを辞書に登録
-		boki_nodes[account_data.id] = node_instance
-		print("  - Setting up node for: '", account_data.name, "' with ID: '", account_data.id, "'")
-		node_instance.setup(account_data)
-
-		categorized_nodes[account_data.account_type].append(node_instance)
-
-	# 簿記のレイアウトに合わせて配置（左側に資産、右側にその他）
-	_layout_nodes(categorized_nodes[Account.Type.ASSET], Vector2(150, 200))
-	_layout_nodes(categorized_nodes[Account.Type.LIABILITY], Vector2(500, 150))
-	_layout_nodes(categorized_nodes[Account.Type.EQUITY], Vector2(500, 300))
-	_layout_nodes(categorized_nodes[Account.Type.REVENUE], Vector2(850, 150))
-	_layout_nodes(categorized_nodes[Account.Type.EXPENSE], Vector2(850, 300))
-	print("--- [Main] _setup_nodes: ノードのセットアップ完了 ---")
-
-func _layout_nodes(nodes: Array, start_pos: Vector2):
-	for i in range(nodes.size()):
-		nodes[i].position = start_pos + Vector2(0, i * 120)
 
 # 各種シグナルを対応する関数に接続する
 func _connect_signals():
