@@ -2,13 +2,13 @@ extends Node
 
 # 再利用するBokiNodeシーンをあらかじめ読み込んでおく
 const BokiNodeScene = preload("res://scenes/BokiNode.tscn")
-const TransactionIndicatorScene = preload("res://scenes/TransactionIndicator.tscn")
 
 # --- Node References ---
 @onready var boki_node_container = $World/BokiNodeContainer
 @onready var title_label = $UI/TutorialPanel/MarginContainer/VBoxContainer/TitleLabel
 @onready var layout_manager = $BokiNodeLayoutManager
 @onready var tutorial_controller = $TutorialController
+@onready var visualizer = $TransactionVisualizer
 @onready var description_label = $UI/TutorialPanel/MarginContainer/VBoxContainer/DescriptionLabel
 @onready var next_button = $UI/NextButton
 
@@ -58,27 +58,8 @@ func _on_execute_transaction_requested(transaction: Transaction):
 	# 1. Ledgerに取引を実行させる (これによりaccount_updatedシグナルが発行される)
 	Ledger.execute_transaction(transaction)
 	
-	# 2. 取引の可視化（矢印と数字の表示）
-	var from_node = boki_nodes.get(transaction.from_account_id)
-	var to_node = boki_nodes.get(transaction.to_account_id)
-	
-	if from_node and to_node:
-		# 矢印の親(boki_node_container)からの相対位置を使用する
-		var from_pos = from_node.position
-		var to_pos = to_node.position
-		
-		current_indicator = TransactionIndicatorScene.instantiate()
-		boki_node_container.add_child(current_indicator)
-		
-		# 1. 位置: 2つのノードのちょうど真ん中に配置する
-		current_indicator.position = from_pos.lerp(to_pos, 0.5)
-		# 2. 角度: FromノードからToノードの方向に向ける
-		current_indicator.rotation = from_pos.angle_to_point(to_pos)
-		# 3. 長さ: 2点間の距離に合わせて矢印の長さを調整する
-		var distance = from_pos.distance_to(to_pos)
-		# Polygon2Dの基本の長さ(100px)で割る
-		current_indicator.scale.x = distance / 100.0 
-		current_indicator.set_amount(transaction.amount)
+	# 2. 可視化担当に矢印の表示を依頼
+	current_indicator = visualizer.visualize_transaction(transaction, boki_nodes, boki_node_container)
 
 
 # Ledger側で勘定科目の残高が更新されたときに呼ばれる
