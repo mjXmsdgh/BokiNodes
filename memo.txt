@@ -10,7 +10,7 @@ Godotのメニューから シーン > 新しいシーン を選択します。
 お金の流れを示す線（Line2D）を配置する
 
 TransactionIndicator ノードを選択した状態で、+ ボタンを押し、TextureRect ノードを追加します。
-追加した `ArrowLine` を選択し、インスペクターで以下の設定を行います。
+追加した `Line2D` を選択し、インスペクターで以下の設定を行います。名前を `ArrowLine` に変更します。
   - `Width`: 線の太さを設定します（例: `10.0`）。
   - `Antialiased`: ON にして、線を滑らかにします。
   - `Fill` > `Gradient`: `[空]` をクリックし、`新規 Gradient` を作成します。
