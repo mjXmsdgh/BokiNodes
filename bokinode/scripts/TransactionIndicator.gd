@@ -5,6 +5,7 @@ extends Node2D
 
 
 func set_amount(amount: float):
-	amount_label.text = "%s" % amount
-	# 日本円形式の文字列にフォーマットして表示
-	#amount_label.text = "¥{:,}".format({"":"{0}".format([amount])})
+	#amount_label.text = "%s" % amount
+	# 3桁ごとにカンマを入れる簡易的なロジック
+	var amount_str = str(int(amount))
+	amount_label.text = "¥{num}".format({"num": amount_str.insert(amount_str.length() - 3, ",") if amount_str.length() > 3 else amount_str})
