@@ -1,0 +1,20 @@
+Main (Node) # シーン全体のルートノード
+
+  # 3D空間。BokiNodeの表示領域
+  World (Node3D)
+    BokiNodeContainer (Node3D) # BokiNodeを動的に追加・管理するコンテナ
+
+  # UI全体を管理するレイヤー
+  UI (CanvasLayer)
+    # チュートリアル表示用UI
+    TutorialPanel (PanelContainer)
+      MarginContainer
+        VBoxContainer
+          TitleLabel (Label) # チュートリアルのタイトル
+          DescriptionLabel (Label) # チュートリアルの説明文
+    NextButton (Button) # 次のチュートリアルへ進むボタン
+
+  # シングルトンや管理用ノード
+  BokiNodeLayoutManager (Node) # BokiNodeの配置を計算・管理する
+  TutorialController (Node) # チュートリアルの進行を管理する
+  TransactionVisualizer (Node) # 取引のアニメーションを管理する
