@@ -17,28 +17,9 @@ func _ready():
 
 # 財務諸表の数値を計算するメインの関数
 func calculate_statements() -> void:
-	# Ledgerから全ての勘定科目データを取得する（という想定）
-	# var all_accounts: Array[Account] = ledger.get_all_accounts()
-	
-	# --- ここでは仮のデータで実装を進めます ---
-	# ※Ledgerが未実装のため、仮の勘定科目リストを作成します
-	var cash = Account.new()
-	cash.name = "現金"
-	cash.account_type = Account.Type.ASSET
-	cash.balance = 1000
-	
-	var sales = Account.new()
-	sales.name = "売上"
-	sales.account_type = Account.Type.REVENUE
-	sales.balance = 500
-	
-	var cost = Account.new()
-	cost.name = "仕入"
-	cost.account_type = Account.Type.EXPENSE
-	cost.balance = 200
-	
-	var all_accounts: Array[Account] = [cash, sales, cost]
-	# --- 仮データここまで ---
+	# Ledgerが実装されるまでは、仮の勘定科目データを使用する
+	# var all_accounts: Array[Account] = Ledger.get_all_accounts()
+	var all_accounts: Array[Account] = _create_dummy_accounts()
 
 	var asset_total = 0
 	var liability_total = 0
@@ -70,3 +51,21 @@ func calculate_statements() -> void:
 	# 計算完了を通知するシグナルを発行
 	statements_updated.emit(statements_data)
 	
+# Ledgerが実装されるまでの仮データを生成するプライベート関数
+func _create_dummy_accounts() -> Array[Account]:
+	var cash = Account.new()
+	cash.name = "現金"
+	cash.account_type = Account.Type.ASSET
+	cash.balance = 1000
+	
+	var sales = Account.new()
+	sales.name = "売上"
+	sales.account_type = Account.Type.REVENUE
+	sales.balance = 500
+	
+	var cost = Account.new()
+	cost.name = "仕入"
+	cost.account_type = Account.Type.EXPENSE
+	cost.balance = 200
+	
+	return [cash, sales, cost]
