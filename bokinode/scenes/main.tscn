@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8aqfdvo8f3kj"]
+[gd_scene load_steps=6 format=3 uid="uid://c8aqfdvo8f3kj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_dmf0e"]
 [ext_resource type="Script" path="res://scripts/BokiNodeLayoutManager.gd" id="2_ln54v"]
-[ext_resource type="PackedScene" uid="uid://b2j4chdw605i8" path="res://scenes/us/FinancialStatementPanel.tscn" id="2_ninmt"]
 [ext_resource type="Script" path="res://scripts/TutorialController.gd" id="3_g61ma"]
 [ext_resource type="Script" path="res://scripts/TransactionVisualizer.gd" id="4_vs8mt"]
 [ext_resource type="PackedScene" uid="uid://n1x7i2a7nfe0" path="res://scenes/TransactionIndicator.tscn" id="5_7d1yh"]
@@ -38,8 +37,6 @@ offset_top = 93.0
 offset_right = 83.0
 offset_bottom = 124.0
 text = "Next"
-
-[node name="FinancialStatementPanel" parent="UI" instance=ExtResource("2_ninmt")]
 
 [node name="BokiNodeLayoutManager" type="Node" parent="."]
 script = ExtResource("2_ln54v")

@@ -7,15 +7,16 @@ signal statements_updated(data: FinancialStatementData)
 # 計算結果を格納するためのカスタムリソース
 var statements_data: FinancialStatementData
 
-# Ledgerシングルトンへの参照（フェーズ3で使います）
-# var ledger: Ledger = Ledger
-
 func _ready():
+	# Ledgerの勘定科目データが更新されたら、財務諸表を再計算するよう接続
+	# (Ledgerシングルトンが実装されたら、このコメントを解除します)
+	# Ledger.account_updated.connect(calculate_statements)
+	
 	# ゲーム開始時に一度だけ計算を実行する
 	calculate_statements()
 
 # 財務諸表の数値を計算するメインの関数
-func calculate_statements():
+func calculate_statements() -> void:
 	# Ledgerから全ての勘定科目データを取得する（という想定）
 	# var all_accounts: Array[Account] = ledger.get_all_accounts()
 	
@@ -56,7 +57,9 @@ func calculate_statements():
 	var net_profit = revenue_total - expense_total
 	var total_equity_bs = equity_total + net_profit
 
-	statements_data = FinancialStatementData.new()
+	if statements_data == null:
+		statements_data = FinancialStatementData.new()
+		
 	statements_data.asset_total = asset_total
 	statements_data.liability_total = liability_total
 	statements_data.equity_total = total_equity_bs
@@ -67,4 +70,3 @@ func calculate_statements():
 	# 計算完了を通知するシグナルを発行
 	statements_updated.emit(statements_data)
 	
-	print("財務諸表の計算が完了しました: ", statements_data)
