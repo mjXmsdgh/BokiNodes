@@ -9,7 +9,7 @@ extends PanelContainer
 @onready var net_profit_label: Label = %NetProfitLabel
 
 
-func _ready():
+func _ready() -> void:
 	# FinancialStatementManagerシングルトンのシグナルに接続する
 	FinancialStatementManager.statements_updated.connect(_on_statements_updated)
 	
@@ -17,24 +17,17 @@ func _ready():
 	FinancialStatementManager.calculate_statements()
 
 
-# シグナルを受け取って表示を更新する関数
+# FinancialStatementManagerからデータが更新されたときに呼び出される関数
 func _on_statements_updated(data: FinancialStatementData) -> void:
 	# 受け取ったデータで各Labelのテキストを更新する
 	# format_currency関数で数値を読みやすい通貨形式に変換する
-	update_label(asset_total_label, data.asset_total)
-	update_label(liability_total_label, data.liability_total)
-	update_label(equity_total_label, data.equity_total)
-	update_label(revenue_total_label, data.revenue_total)
-	update_label(expense_total_label, data.expense_total)
-	update_label(net_profit_label, data.net_profit)
+	asset_total_label.text = format_currency(data.asset_total)
+	liability_total_label.text = format_currency(data.liability_total)
+	equity_total_label.text = format_currency(data.equity_total)
+	revenue_total_label.text = format_currency(data.revenue_total)
+	expense_total_label.text = format_currency(data.expense_total)
+	net_profit_label.text = format_currency(data.net_profit)
 
 # 数値を "¥ 1,000" のような形式の文字列に変換するヘルパー関数
 func format_currency(value: int) -> String:
 	return "¥ {:,}".format({"value": value}).replace(",", ",")
-
-# ラベルのテキストを更新し、フィードバックアニメーションを再生する
-func update_label(label: Label, value: int) -> void:
-	label.text = format_currency(value)
-	var tween = create_tween()
-	tween.tween_property(label, "theme_override_colors/font_color", Color.YELLOW, 0.2)
-	tween.tween_property(label, "theme_override_colors/font_color", Color.WHITE, 0.4)
