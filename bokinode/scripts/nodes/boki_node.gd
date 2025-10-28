@@ -18,8 +18,8 @@ func setup(data: Account):
 	self.account_data = data
 	
 	# 【ステップ2&3】勘定科目の種類に応じて背景色を設定する
-	if AppTheme.NODE_COLORS.has(account_data.account_type):
-		background.color = AppTheme.NODE_COLORS[account_data.account_type]
+	if BokiStyles.NODE_COLORS.has(account_data.account_type):
+		background.color = BokiStyles.NODE_COLORS[account_data.account_type]
 	
 	# 受け取ったデータを使って、見た目を更新する
 	account_name_label.text = account_data.name

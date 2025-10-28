@@ -6,13 +6,14 @@ res://
 │  └─ ui/
 │     ├─ TransactionIndicator.tscn
 │     └─ tutorial/
-│        └─ TutorialPanel.tscn  # (ノード構成.txtより)
+│        └─ TutorialPanel.tscn
 │
 ├─ scripts/
 │  ├─ main.gd
 │  ├─ core/
 │  │  ├─ BokiNodeLayoutManager.gd
-│  │  └─ TransactionVisualizer.gd
+│  │  ├─ TransactionVisualizer.gd
+│  │  └─ BokiNodeStyles.gd      # (旧 Theme.gd)
 │  ├─ data/
 │  │  ├─ account.gd
 │  │  └─ transaction.gd
@@ -24,7 +25,4 @@ res://
 │     ├─ TransactionIndicator.gd
 │     └─ tutorial/
 │        ├─ TutorialController.gd
-│        └─ NextButton.gd          # (ノード構成.txtより)
-│
-└─ theme/
-   └─ main_theme.tres  # (Theme.gdから変更)
+│        └─ NextButton.gd

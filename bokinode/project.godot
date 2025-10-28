@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Ledger="*res://scripts/singletons/ledger.gd"
+BokiStyles="*res://scripts/core/BokiNodeStyles.gd"
 
 [rendering]
 
