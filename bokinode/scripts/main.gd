@@ -1,7 +1,7 @@
 extends Node
 
 # 再利用するBokiNodeシーンをあらかじめ読み込んでおく
-const BokiNodeScene = preload("res://scenes/BokiNode.tscn")
+const BokiNodeScene = preload("res://scenes/nodes/BokiNode.tscn")
 
 # --- Node References ---
 @onready var boki_node_container = $World/BokiNodeContainer

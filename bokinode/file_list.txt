@@ -1,0 +1,30 @@
+res://
+├─ scenes/
+│  ├─ main.tscn
+│  ├─ nodes/
+│  │  └─ BokiNode.tscn
+│  └─ ui/
+│     ├─ TransactionIndicator.tscn
+│     └─ tutorial/
+│        └─ TutorialPanel.tscn  # (ノード構成.txtより)
+│
+├─ scripts/
+│  ├─ main.gd
+│  ├─ core/
+│  │  ├─ BokiNodeLayoutManager.gd
+│  │  └─ TransactionVisualizer.gd
+│  ├─ data/
+│  │  ├─ account.gd
+│  │  └─ transaction.gd
+│  ├─ nodes/
+│  │  └─ boki_node.gd
+│  ├─ singletons/
+│  │  └─ ledger.gd
+│  └─ ui/
+│     ├─ TransactionIndicator.gd
+│     └─ tutorial/
+│        ├─ TutorialController.gd
+│        └─ NextButton.gd          # (ノード構成.txtより)
+│
+└─ theme/
+   └─ main_theme.tres  # (Theme.gdから変更)
