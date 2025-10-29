@@ -1,7 +1,7 @@
 # BokiNodeStyles.gd
 # BokiNodeの色など、スタイルに関する定数を定義します。
-class_name BokiNodeStyles
-extends RefCounted
+extends Node
+
 
 # 勘定科目の種類と、それに対応するBokiNodeの背景色を定義します。
 var NODE_COLORS = {
