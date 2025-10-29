@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://c8aqfdvo8f3kj"]
+[gd_scene load_steps=7 format=3 uid="uid://c8aqfdvo8f3kj"]
 
 [ext_resource type="Script" path="res://scripts/main.gd" id="1_dmf0e"]
+[ext_resource type="PackedScene" uid="uid://dx0grpxqen5y" path="res://scenes/debug_tool/SceneTreeView.tscn" id="2_c08vp"]
 [ext_resource type="Script" path="res://scripts/core/BokiNodeLayoutManager.gd" id="2_ln54v"]
 [ext_resource type="Script" path="res://scripts/ui/tutorial/TutorialController.gd" id="3_g61ma"]
 [ext_resource type="Script" path="res://scripts/core/TransactionVisualizer.gd" id="4_vs8mt"]
@@ -37,6 +38,9 @@ offset_top = 93.0
 offset_right = 83.0
 offset_bottom = 124.0
 text = "Next"
+
+[node name="SceneTreeView" parent="UI" instance=ExtResource("2_c08vp")]
+enabled = false
 
 [node name="BokiNodeLayoutManager" type="Node" parent="."]
 script = ExtResource("2_ln54v")
