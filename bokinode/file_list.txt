@@ -5,6 +5,8 @@ res://
 │  │  └─ BokiNode.tscn
 │  └─ ui/
 │     ├─ TransactionIndicator.tscn
+│     └─ debug/
+│        └─ SceneTreeView.tscn
 │     └─ tutorial/
 │        └─ TutorialPanel.tscn
 │
@@ -22,6 +24,8 @@ res://
 │  ├─ singletons/
 │  │  └─ ledger.gd
 │  └─ ui/
+│     ├─ debug/
+│     │  └─ scene_tree_view.gd
 │     ├─ TransactionIndicator.gd
 │     └─ tutorial/
 │        ├─ TutorialController.gd
