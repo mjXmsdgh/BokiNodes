@@ -1,0 +1,38 @@
+├─ .gitattributes
+├─ .gitignore
+├─ file_list.txt
+├─ icon.svg
+├─ icon.svg.import
+├─ project.godot
+├─ scenes/
+│  ├─ debug_tool/
+│  │  ├─ file_lister.tscn
+│  │  └─ SceneTreeView.tscn
+│  ├─ main.tscn
+│  ├─ nodes/
+│  │  └─ BokiNode.tscn
+│  └─ ui/
+│     ├─ TransactionIndicator.tscn
+│     └─ tutorial/
+├─ SceneTreeView.tscn
+├─ scene_tree_view.gd
+└─ scripts/
+   ├─ core/
+   │  ├─ BokiNodeLayoutManager.gd
+   │  ├─ BokiNodeStyles.gd
+   │  └─ TransactionVisualizer.gd
+   ├─ data/
+   │  ├─ account.gd
+   │  └─ transaction.gd
+   ├─ debug_tool/
+   │  ├─ file_lister.gd
+   │  └─ scene_tree_view.gd
+   ├─ main.gd
+   ├─ nodes/
+   │  └─ boki_node.gd
+   ├─ singletons/
+   │  └─ ledger.gd
+   └─ ui/
+      ├─ TransactionIndicator.gd
+      └─ tutorial/
+         └─ TutorialController.gd

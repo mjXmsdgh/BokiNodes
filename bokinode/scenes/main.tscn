@@ -41,6 +41,7 @@ text = "Next"
 
 [node name="SceneTreeView" parent="UI" instance=ExtResource("2_c08vp")]
 enabled = false
+save_to_file = true
 
 [node name="BokiNodeLayoutManager" type="Node" parent="."]
 script = ExtResource("2_ln54v")

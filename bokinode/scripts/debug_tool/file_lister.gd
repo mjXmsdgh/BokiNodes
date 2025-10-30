@@ -13,12 +13,16 @@ func _ready():
 
 # 指定されたパスのディレクトリツリーを再帰的に表示する関数
 func print_directory_tree(path: String, indent: String = ""):
+	# 無視するディレクトリのリスト
+	var ignored_dirs = [".godot", ".import"]
+
 	# DirAccessを使ってディレクトリを開く
 	var dir = DirAccess.open(path)
 	if dir:
 		# ディレクトリ内のスキャンを開始
 		dir.list_dir_begin()
 		var file_name = dir.get_next()
+		var files = []
 		
 		# ファイルがなくなるまでループ
 		while file_name != "":
@@ -26,18 +30,29 @@ func print_directory_tree(path: String, indent: String = ""):
 			if file_name != "." and file_name != "..":
 				# 現在の項目がディレクトリかどうかをチェック
 				if dir.current_is_dir():
-					# ディレクトリの場合
-					print(indent + "└─ " + file_name + "/")
-					# 再帰呼び出しでサブディレクトリの中身も表示（インデントを増やす）
-					print_directory_tree(path.path_join(file_name), indent + "    ")
+					# 無視リストに含まれていないディレクトリのみ処理
+					if not ignored_dirs.has(file_name):
+						files.append({"name": file_name, "is_dir": true})
 				else:
-					# ファイルの場合
-					print(indent + "   - " + file_name)
+					files.append({"name": file_name, "is_dir": false})
 			
 			# 次のファイルへ
 			file_name = dir.get_next()
 		
 		# スキャンを終了（推奨）
 		dir.list_dir_end()
+
+		# 取得したファイルとディレクトリを処理
+		for i in range(files.size()):
+			var item = files[i]
+			var is_last = (i == files.size() - 1)
+			var prefix = indent + ("└─ " if is_last else "├─ ")
+			var child_indent = indent + ("   " if is_last else "│  ")
+
+			if item.is_dir:
+				print(prefix + item.name + "/")
+				print_directory_tree(path.path_join(item.name), child_indent)
+			else:
+				print(prefix + item.name)
 	else:
 		printerr("An error occurred when trying to access the path: ", path)

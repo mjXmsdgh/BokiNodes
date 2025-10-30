@@ -3,7 +3,7 @@ extends PanelContainer
 # --- Exports ---
 @export var enabled: bool = true # このUI自体の表示/非表示を切り替えるフラグ
 @export var save_to_file: bool = false # trueの場合、ツリー構造をテキストファイルに保存する
-@export var output_file_path: String = "res://scripts/debug_tool/scene_tree.txt" # 保存するファイルパス
+@export var output_file_path: String = "res://forAI/scene_tree.txt" # 保存するファイルパス
 
 # --- Node References ---
 # ノード構成を表示するRichTextLabelへの参照
