@@ -1,6 +1,6 @@
 extends Node
 
-const BokiNodeScene = preload("res://scenes/nodes/BokiNode.tscn")
+const BokiNodeScene = preload("res://scenes/ui/BokiNode.tscn")
 
 # ノードを生成し、レイアウトし、その辞書を返す
 func setup_and_layout_nodes(container: Node) -> Dictionary:

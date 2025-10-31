@@ -29,7 +29,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TutorialPanel" type="PanelContainer" parent="UILayer/TutorialUI"]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 50.0
 
@@ -46,7 +45,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="NextButton" type="Button" parent="UILayer/TutorialUI"]
-layout_mode = 0
 offset_left = 38.0
 offset_top = 93.0
 offset_right = 83.0

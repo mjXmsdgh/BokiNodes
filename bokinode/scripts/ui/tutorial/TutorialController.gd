@@ -8,8 +8,8 @@ signal prepare_for_next_transaction_requested
 
 # --- Node References ---
 # MainシーンのUIノードへの参照を直接取得する
-@onready var description_label: Label = get_node("/root/Main/UI/TutorialPanel/MarginContainer/VBoxContainer/DescriptionLabel")
-@onready var next_button: Button = get_node("/root/Main/UI/NextButton")
+@onready var description_label = get_node("/root/Main/UILayer/TutorialUI/TutorialPanel/MarginContainer/VBoxContainer/DescriptionLabel")
+@onready var next_button: Button = get_node("/root/Main/UILayer/TutorialUI/NextButton")
 
 # --- 状態管理 ---
 var current_transaction: Transaction

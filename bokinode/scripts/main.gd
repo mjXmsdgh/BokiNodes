@@ -1,16 +1,16 @@
 extends Node
 
 # 再利用するBokiNodeシーンをあらかじめ読み込んでおく
-const BokiNodeScene = preload("res://scenes/nodes/BokiNode.tscn")
+const BokiNodeScene = preload("res://scenes/ui/BokiNode.tscn")
 
 # --- Node References ---
 @onready var boki_node_container = $World/BokiNodeContainer
-@onready var title_label = $UI/TutorialPanel/MarginContainer/VBoxContainer/TitleLabel
+@onready var title_label = $UILayer/TutorialUI/TutorialPanel/MarginContainer/VBoxContainer/TitleLabel
 @onready var layout_manager = $BokiNodeLayoutManager
 @onready var tutorial_controller = $TutorialController
 @onready var visualizer = $TransactionVisualizer
-@onready var description_label = $UI/TutorialPanel/MarginContainer/VBoxContainer/DescriptionLabel
-@onready var next_button = $UI/NextButton
+@onready var description_label = $UILayer/TutorialUI/TutorialPanel/MarginContainer/VBoxContainer/DescriptionLabel
+@onready var next_button = $UILayer/TutorialUI/NextButton
 
 # --- Member Variables ---
 # 生成したBokiNodeのインスタンスを、勘定科目IDをキーにして保持する辞書
