@@ -9,13 +9,10 @@
 │  │  ├─ file_lister.tscn
 │  │  └─ SceneTreeView.tscn
 │  ├─ main.tscn
-│  ├─ nodes/
-│  │  └─ BokiNode.tscn
 │  └─ ui/
+│     ├─ BokiNode.tscn
 │     ├─ TransactionIndicator.tscn
 │     └─ tutorial/
-├─ SceneTreeView.tscn
-├─ scene_tree_view.gd
 └─ scripts/
    ├─ core/
    │  ├─ BokiNodeLayoutManager.gd
@@ -28,11 +25,10 @@
    │  ├─ file_lister.gd
    │  └─ scene_tree_view.gd
    ├─ main.gd
-   ├─ nodes/
-   │  └─ boki_node.gd
    ├─ singletons/
    │  └─ ledger.gd
    └─ ui/
-      ├─ TransactionIndicator.gd
-      └─ tutorial/
-         └─ TutorialController.gd
+	  ├─ boki_node.gd
+	  ├─ TransactionIndicator.gd
+	  └─ tutorial/
+		 └─ TutorialController.gd
