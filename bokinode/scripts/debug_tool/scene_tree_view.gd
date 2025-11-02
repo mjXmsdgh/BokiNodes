@@ -77,6 +77,7 @@ func _save_text_to_file(text: String) -> void:
 
 func _build_tree_recursive(node: Node, prefix: String, output: PackedStringArray) -> void:
 	"""ノードを再帰的にたどり、ツリー構造を構築する。"""
+	# 指定されたノードの子をたどり、ツリー表示用の文字列を生成する
 	var children = node.get_children()
 	var i = 0
 	for child in children:
