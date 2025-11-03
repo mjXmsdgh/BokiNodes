@@ -1,6 +1,6 @@
-├─ .gitattributes
-├─ .gitignore
-├─ file_list.txt
+├─ forAI/
+│  ├─ file_list.txt
+│  └─ scene_tree.txt
 ├─ icon.svg
 ├─ icon.svg.import
 ├─ project.godot
@@ -8,6 +8,7 @@
 │  ├─ debug_tool/
 │  │  ├─ file_lister.tscn
 │  │  └─ SceneTreeView.tscn
+│  ├─ maiBBC3.tmp
 │  ├─ main.tscn
 │  └─ ui/
 │     ├─ BokiNode.tscn
@@ -28,7 +29,7 @@
    ├─ singletons/
    │  └─ ledger.gd
    └─ ui/
-	  ├─ boki_node.gd
-	  ├─ TransactionIndicator.gd
-	  └─ tutorial/
-		 └─ TutorialController.gd
+      ├─ boki_node.gd
+      ├─ TransactionIndicator.gd
+      └─ tutorial/
+         └─ TutorialController.gd
