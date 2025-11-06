@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdrxl3e3y5wls"]
+
+[ext_resource type="Script" path="res://scenes/ui/financial_statement_panel.gd" id="1_71e74"]
+
+[node name="financial_statement_panel" type="PanelContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_71e74")
+
+[node name="貸借対照表(BS)" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="資産合計" type="Label" parent="貸借対照表(BS)"]
+layout_mode = 2
+
+[node name="負債合計" type="Label" parent="貸借対照表(BS)"]
+layout_mode = 2
+
+[node name="純資産合計" type="Label" parent="貸借対照表(BS)"]
+layout_mode = 2
+
+[node name="損益計算書(PL)" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="収益合計" type="Label" parent="損益計算書(PL)"]
+layout_mode = 2
+
+[node name="費用合計" type="Label" parent="損益計算書(PL)"]
+layout_mode = 2
+
+[node name="当期純利益" type="Label" parent="損益計算書(PL)"]
+layout_mode = 2
