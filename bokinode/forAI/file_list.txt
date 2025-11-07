@@ -12,6 +12,8 @@
 │  ├─ main.tscn
 │  └─ ui/
 │     ├─ BokiNode.tscn
+│     ├─ financial_statement_panel.gd
+│     ├─ financial_statement_panel.tscn
 │     ├─ TransactionIndicator.tscn
 │     └─ tutorial/
 └─ scripts/
@@ -27,6 +29,7 @@
    │  └─ scene_tree_view.gd
    ├─ main.gd
    ├─ singletons/
+   │  ├─ FinancialStatementManager.gd
    │  └─ ledger.gd
    └─ ui/
       ├─ boki_node.gd
