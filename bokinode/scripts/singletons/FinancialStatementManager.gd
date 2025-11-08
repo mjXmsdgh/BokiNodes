@@ -1,8 +1,23 @@
 extends Node
 
+# 財務諸表のデータが更新されたときに発行されるシグナル
+# UIはこのシグナルを受け取って表示を更新します。
+# 引数として、計算結果の辞書を渡します。
+signal statements_updated(statements_data: Dictionary)
+
 # Ledgerシングルトンへの参照。
 # Godotのプロジェクト設定 > オートロードで "Ledger" が登録されている必要があります。
 @onready var ledger: Node = get_tree().get_root().get_node("Ledger")
+
+
+func _ready() -> void:
+	# Ledgerの勘定科目データが更新されたら、_on_ledger_account_updated関数を呼び出すように接続します。
+	# これが「更新のきっかけ」を捉える部分です。
+	if ledger:
+		ledger.account_updated.connect(_on_ledger_account_updated)
+	else:
+		printerr("FinancialStatementManager: Ledger singleton not found at path '/root/Ledger'.")
+
 
 ## 財務諸表のデータを計算して、結果を辞書として返します。
 ##
@@ -58,3 +73,11 @@ func calculate_statements() -> Dictionary:
 		"net_income": net_income,
 		"final_equity_total": final_equity_total,
 	}
+
+
+## Ledgerのaccount_updatedシグナルを受け取ったときに呼び出される関数
+func _on_ledger_account_updated(_account: Account) -> void:
+	# 財務諸表のデータを再計算します。
+	var new_statements_data := calculate_statements()
+	# 計算結果を添えて、statements_updatedシグナルを発行します。
+	statements_updated.emit(new_statements_data)
