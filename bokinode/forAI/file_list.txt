@@ -12,7 +12,6 @@
 │  ├─ main.tscn
 │  └─ ui/
 │     ├─ BokiNode.tscn
-│     ├─ financial_statement_panel.gd
 │     ├─ financial_statement_panel.tscn
 │     ├─ TransactionIndicator.tscn
 │     └─ tutorial/
@@ -33,6 +32,7 @@
    │  └─ ledger.gd
    └─ ui/
       ├─ boki_node.gd
+      ├─ financial_statement_panel.gd
       ├─ TransactionIndicator.gd
       └─ tutorial/
          └─ TutorialController.gd
