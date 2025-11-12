@@ -41,11 +41,20 @@ func update_display(data: Dictionary) -> void:
 
 	# 辞書のデータを各Labelのtextプロパティに設定します。
 	# 数値を3桁区切りの文字列にフォーマットして表示します。
-	asset_total_label.text = "¥{:,}".format({"value": data.get("asset_total", 0)})
-	liability_total_label.text = "¥{:,}".format({"value": data.get("liability_total", 0)})
+	var asset_total = data.get("asset_total", 0)
+	var liability_total = data.get("liability_total", 0)
 	# B/Sの純資産は、当期純利益を含んだ最終的な値を表示します。
-	equity_total_label.text = "¥{:,}".format({"value": data.get("final_equity_total", 0)})
+	var final_equity_total = data.get("final_equity_total", 0)
+	var revenue_total = data.get("revenue_total", 0)
+	var expense_total = data.get("expense_total", 0)
+	var net_income = data.get("net_income", 0)
 
-	revenue_total_label.text = "¥{:,}".format({"value": data.get("revenue_total", 0)})
-	expense_total_label.text = "¥{:,}".format({"value": data.get("expense_total", 0)})
-	net_income_label.text = "¥{:,}".format({"value": data.get("net_income", 0)})
+	# str()で一度文字列に変換し、%のフォーマット機能で桁区切りを実現します。
+	# 整数部が0の場合でも "0" と表示されるようにしています。
+	asset_total_label.text = "¥%s" % str(asset_total).format({"value": asset_total}, ",")
+	liability_total_label.text = "¥%s" % str(liability_total).format({"value": liability_total}, ",")
+	equity_total_label.text = "¥%s" % str(final_equity_total).format({"value": final_equity_total}, ",")
+
+	revenue_total_label.text = "¥%s" % str(revenue_total).format({"value": revenue_total}, ",")
+	expense_total_label.text = "¥%s" % str(expense_total).format({"value": expense_total}, ",")
+	net_income_label.text = "¥%s" % str(net_income).format({"value": net_income}, ",")
