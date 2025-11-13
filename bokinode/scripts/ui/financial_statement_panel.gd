@@ -1,15 +1,16 @@
 extends PanelContainer
 
 # --- UIノードへの参照 ---
-# 貸借対照表 (B/S)
-@onready var asset_total_label: Label = $"貸借対照表(BS)/資産合計"
-@onready var liability_total_label: Label = $"貸借対照表(BS)/負債合計"
-@onready var equity_total_label: Label = $"貸借対照表(BS)/純資産合計"
+# HBoxContainerを追加した場合のパスの例
+@onready var bs_pl_container: HBoxContainer = $HBoxContainer
+@onready var asset_total_label: Label = $HBoxContainer.get_node("貸借対照表(BS)/資産合計")
+@onready var liability_total_label: Label = $HBoxContainer.get_node("貸借対照表(BS)/負債合計")
+@onready var equity_total_label: Label = $HBoxContainer.get_node("貸借対照表(BS)/純資産合計")
 
 # 損益計算書 (P/L)
-@onready var revenue_total_label: Label = $"損益計算書(PL)/収益合計"
-@onready var expense_total_label: Label = $"損益計算書(PL)/費用合計"
-@onready var net_income_label: Label = $"損益計算書(PL)/当期純利益"
+@onready var revenue_total_label: Label = $HBoxContainer.get_node("損益計算書(PL)/収益合計")
+@onready var expense_total_label: Label = $HBoxContainer.get_node("損益計算書(PL)/費用合計")
+@onready var net_income_label: Label = $HBoxContainer.get_node("損益計算書(PL)/当期純利益")
 
 # --- シングルトンへの参照 ---
 @onready var financial_statement_manager: Node = FinancialStatementManager

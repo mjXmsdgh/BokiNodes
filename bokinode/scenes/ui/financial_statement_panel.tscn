@@ -1,32 +1,40 @@
-[gd_scene load_steps=2 format=3 uid="uid://cdrxl3e3y5wls"]
+[gd_scene load_steps=3 format=3 uid="uid://cdrxl3e3y5wls"]
 
 [ext_resource type="Script" path="res://scripts/ui/financial_statement_panel.gd" id="1_71e74"]
+[ext_resource type="PackedScene" uid="uid://dx0grpxqen5y" path="res://scenes/debug_tool/SceneTreeView.tscn" id="2_6lkkw"]
 
 [node name="financial_statement_panel" type="PanelContainer"]
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_71e74")
 
-[node name="貸借対照表(BS)" type="VBoxContainer" parent="."]
+[node name="SceneTreeView" parent="." instance=ExtResource("2_6lkkw")]
+visible = false
 layout_mode = 2
 
-[node name="資産合計" type="Label" parent="貸借対照表(BS)"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 
-[node name="負債合計" type="Label" parent="貸借対照表(BS)"]
+[node name="貸借対照表(BS)" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="純資産合計" type="Label" parent="貸借対照表(BS)"]
+[node name="資産合計" type="Label" parent="HBoxContainer/貸借対照表(BS)"]
 layout_mode = 2
 
-[node name="損益計算書(PL)" type="VBoxContainer" parent="."]
+[node name="負債合計" type="Label" parent="HBoxContainer/貸借対照表(BS)"]
 layout_mode = 2
 
-[node name="収益合計" type="Label" parent="損益計算書(PL)"]
+[node name="純資産合計" type="Label" parent="HBoxContainer/貸借対照表(BS)"]
 layout_mode = 2
 
-[node name="費用合計" type="Label" parent="損益計算書(PL)"]
+[node name="損益計算書(PL)" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="当期純利益" type="Label" parent="損益計算書(PL)"]
+[node name="収益合計" type="Label" parent="HBoxContainer/損益計算書(PL)"]
+layout_mode = 2
+
+[node name="費用合計" type="Label" parent="HBoxContainer/損益計算書(PL)"]
+layout_mode = 2
+
+[node name="当期純利益" type="Label" parent="HBoxContainer/損益計算書(PL)"]
 layout_mode = 2

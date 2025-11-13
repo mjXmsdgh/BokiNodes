@@ -67,6 +67,9 @@ enabled = false
 save_to_file = true
 
 [node name="financial_statement_panel" parent="UILayer" instance=ExtResource("3_k0vqj")]
+offset_left = 890.0
+offset_right = 930.0
+offset_bottom = 77.0
 
 [node name="BokiNodeLayoutManager" type="Node" parent="."]
 script = ExtResource("2_ln54v")
